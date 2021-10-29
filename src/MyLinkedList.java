@@ -27,19 +27,27 @@
  */
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class MyLinkedList {
     public static void main(String[] args) {
-        ListNode n8 = new ListNode(-7);
-        ListNode n7 = new ListNode(4, n8);
-        ListNode n6 = new ListNode(3, n7);
-        ListNode n5 = new ListNode(2, n6);
-        ListNode n4 = new ListNode(-5, n5);
-        ListNode n3 = new ListNode(4, n4);
-        ListNode n2 = new ListNode(1, n3);
-        ListNode n1 = new ListNode(7, n2);
 
-        removeZeroSumSublists(n1);
+        ListNode head = new ListNode();
+        ListNode zero = head;
+        int count = 1;
+        //ListNode node = new ListNode(new Random().nextInt(1000), );
+
+        while ( head != null ) {
+            head.val = new Random().nextInt(21) - 10;
+            if (count < 100) {
+                head.next = new ListNode();
+                System.out.println(count + " " + head.val + " " + head.next );
+            }
+            count++;
+            head = head.next;
+        }
+
+        removeZeroSumSublists(zero);
 
     }
 
