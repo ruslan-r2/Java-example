@@ -12,12 +12,19 @@ import java.util.Arrays;
 public class MyArray {
     public static void main(String[] args) {
 
+        long m = System.currentTimeMillis();
+
+
         int[] arr = {1, 2, 3, 1, 1, 2, 1, 2, 3, 3, 2, 4, 5, 3, 1};
         int n = 3;
 
         System.out.println(Arrays.toString(arr));
         System.out.println(Arrays.toString(array(arr, n)));
+        System.out.println((double) (System.currentTimeMillis() - m));
         System.out.println(Arrays.toString(countVal(arr, n)));
+        System.out.println((double) (System.currentTimeMillis() - m));
+        System.out.println(Arrays.toString(array1(arr, n)));
+        System.out.println((double) (System.currentTimeMillis() - m));
 
     }
 
@@ -63,5 +70,17 @@ public class MyArray {
             }
         }
         return list.stream().mapToInt(x -> x).toArray();
+    }
+
+    // Ещё одно решение при помощи стрима.
+    public static int[] array1(int[] arr, int n) {
+        Map<Integer, Integer> mapInts = new HashMap<>();
+        int[] newMass = Arrays.stream(arr)
+                .filter(e -> {
+                    mapInts.merge(e, 1, Integer::sum);
+                    return mapInts.get(e) <= n;
+                })
+                .toArray();
+        return newMass;
     }
 }

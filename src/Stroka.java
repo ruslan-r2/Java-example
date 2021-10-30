@@ -23,6 +23,8 @@
 */
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Stroka {
@@ -33,7 +35,8 @@ public class Stroka {
         tgMessages.add("Прод подняли.");
         tgMessages.add("@vkoba спасибо.");
 
-        tgMessages.stream().flatMap(str -> Stream.of(str.split("[ ,.!?]")))
+        tgMessages.stream()
+                .flatMap(str -> Stream.of(str.split("[ ,.!?]")))
                 //.peek(System.out::println)
                 .map(str -> str.toLowerCase())
                 .filter(s -> s.matches("^@(.+)"))
@@ -41,8 +44,20 @@ public class Stroka {
                 .collect(HashMap::new, (HashMap<String, Integer> map, String word) -> map.put(word, map.containsKey(word) ? (map.get(word) + 1) : 1), HashMap::putAll )
                 .entrySet()
                 .stream()
-                .sorted((map1, map2) -> map1.getValue() == map2.getValue() ? map1.getKey().compareTo(map2.getKey()) : map2.getValue().compareTo(map1.getValue()))
+                .sorted((entry1, entry2) -> entry1.getValue() == entry2.getValue() ? entry1.getKey().compareTo(entry2.getKey()) : entry2.getValue().compareTo(entry1.getValue()))
                 .forEach((map) -> System.out.println(map.getKey().replaceAll("@", "") + " " + map.getValue() ));
 
+        tgMessages.stream()
+                .map(s -> s.replace(",", " "))
+                .flatMap(s -> Stream.of(s.split(" ")))
+                .filter(s -> s.startsWith("@"))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
     }
+
 }
