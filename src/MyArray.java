@@ -3,6 +3,8 @@
     Вернуть надо массив интов.
     соответственно....new int[] { 20, 37, 20, 21 }, 1 ответ { 20, 37, 21 }
     { 1, 2, 3, 1, 1, 2, 1, 2, 3, 3, 2, 4, 5, 3, 1 }, 3 ) ответ { 1, 2, 3, 1, 1, 2, 2, 3, 3, 4, 5 }
+
+    3 - способо
  */
 
 import java.util.*;
@@ -15,16 +17,27 @@ public class MyArray {
         long m = System.currentTimeMillis();
 
 
-        int[] arr = {1, 2, 3, 1, 1, 2, 1, 2, 3, 3, 2, 4, 5, 3, 1};
-        int n = 3;
+        //int[] arr = {1, 2, 3, 1, 1, 2, 1, 2, 3, 3, 2, 4, 5, 3, 1};
+        //int n = 3;
 
-        System.out.println(Arrays.toString(arr));
-        System.out.println(Arrays.toString(array(arr, n)));
-        System.out.println((double) (System.currentTimeMillis() - m));
-        System.out.println(Arrays.toString(countVal(arr, n)));
-        System.out.println((double) (System.currentTimeMillis() - m));
+        int[] arr = new int[50000];
+        int n = 10;
+        for (int i = 0; i < arr.length ; i++) {
+            arr[i] = new Random().nextInt(9);
+        }
+
+        //System.out.println(Arrays.toString(arr));
+
         System.out.println(Arrays.toString(array1(arr, n)));
         System.out.println((double) (System.currentTimeMillis() - m));
+
+        System.out.println(Arrays.toString(array(arr, n)));
+        System.out.println((double) (System.currentTimeMillis() - m));
+
+        System.out.println(Arrays.toString(countVal(arr, n)));
+        System.out.println((double) (System.currentTimeMillis() - m));
+
+
 
     }
 
