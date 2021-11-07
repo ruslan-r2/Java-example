@@ -35,13 +35,12 @@ public class MyLinkedList {
         ListNode head = new ListNode();
         ListNode zero = head;
         int count = 1;
-        //ListNode node = new ListNode(new Random().nextInt(1000), );
 
         while ( head != null ) {
             head.val = new Random().nextInt(21) - 10;
             if (count < 100) {
                 head.next = new ListNode();
-                System.out.println(count + " " + head.val + " " + head.next );
+                //System.out.println(count + " " + head.val + " " + head.next );
             }
             count++;
             head = head.next;
