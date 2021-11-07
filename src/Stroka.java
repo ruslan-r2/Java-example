@@ -29,6 +29,7 @@ import java.util.stream.Stream;
 
 public class Stroka {
     public static void main(String[] args) {
+
         List<String> tgMessages = new ArrayList<>();
         tgMessages.add("@Vasya, @rtor ответь на письмо.");
         tgMessages.add("@rtor @vkoba Почему лежит прод?");
@@ -37,15 +38,13 @@ public class Stroka {
 
         tgMessages.stream()
                 .flatMap(str -> Stream.of(str.split("[ ,.!?]")))
-                //.peek(System.out::println)
                 .map(str -> str.toLowerCase())
                 .filter(s -> s.matches("^@(.+)"))
-                //.peek(System.out::println)
-                .collect(HashMap::new, (HashMap<String, Integer> map, String word) -> map.put(word, map.containsKey(word) ? (map.get(word) + 1) : 1), HashMap::putAll )
+                .collect(HashMap::new, (Map<String, Integer> map, String word) -> map.put(word, map.containsKey(word) ? (map.get(word) + 1) : 1), Map::putAll)
                 .entrySet()
                 .stream()
                 .sorted((entry1, entry2) -> entry1.getValue() == entry2.getValue() ? entry1.getKey().compareTo(entry2.getKey()) : entry2.getValue().compareTo(entry1.getValue()))
-                .forEach((map) -> System.out.println(map.getKey().replaceAll("@", "") + " " + map.getValue() ));
+                .forEach((map) -> System.out.println(map.getKey().replaceAll("@", "") + " " + map.getValue()));
 
         tgMessages.stream()
                 .map(s -> s.replace(",", " "))

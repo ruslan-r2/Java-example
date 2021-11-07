@@ -22,12 +22,11 @@ public class MyArray {
 
         int[] arr = new int[50000];
         int n = 10;
-        for (int i = 0; i < arr.length ; i++) {
+        for (int i = 0; i < arr.length; i++) {
             arr[i] = new Random().nextInt(9);
         }
 
         //System.out.println(Arrays.toString(arr));
-
         System.out.println(Arrays.toString(array1(arr, n)));
         System.out.println((double) (System.currentTimeMillis() - m));
 
@@ -36,8 +35,6 @@ public class MyArray {
 
         System.out.println(Arrays.toString(countVal(arr, n)));
         System.out.println((double) (System.currentTimeMillis() - m));
-
-
 
     }
 
@@ -88,12 +85,11 @@ public class MyArray {
     // Ещё одно решение при помощи стрима.
     public static int[] array1(int[] arr, int n) {
         Map<Integer, Integer> mapInts = new HashMap<>();
-        int[] newMass = Arrays.stream(arr)
+        return Arrays.stream(arr)
                 .filter(e -> {
                     mapInts.merge(e, 1, Integer::sum);
                     return mapInts.get(e) <= n;
                 })
                 .toArray();
-        return newMass;
     }
 }
