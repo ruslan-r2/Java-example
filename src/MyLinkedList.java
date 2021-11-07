@@ -30,14 +30,14 @@ import java.util.HashMap;
 
 public class MyLinkedList {
     public static void main(String[] args) {
-        ListNode n8 = new ListNode(-6);
-        ListNode n7 = new ListNode(5, n8);
-        ListNode n6 = new ListNode(1, n7);
-        ListNode n5 = new ListNode(1, n6);
-        ListNode n4 = new ListNode(-6, n5);
+        ListNode n8 = new ListNode(-7);
+        ListNode n7 = new ListNode(4, n8);
+        ListNode n6 = new ListNode(3, n7);
+        ListNode n5 = new ListNode(2, n6);
+        ListNode n4 = new ListNode(-5, n5);
         ListNode n3 = new ListNode(4, n4);
-        ListNode n2 = new ListNode(2, n3);
-        ListNode n1 = new ListNode(3, n2);
+        ListNode n2 = new ListNode(1, n3);
+        ListNode n1 = new ListNode(7, n2);
 
         removeZeroSumSublists(n1);
 
