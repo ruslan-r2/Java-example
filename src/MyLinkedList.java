@@ -40,13 +40,14 @@ public class MyLinkedList {
             head.val = new Random().nextInt(21) - 10;
             if (count < 100) {
                 head.next = new ListNode();
-                //System.out.println(count + " " + head.val + " " + head.next );
+                System.out.println(count + " " + head.val + " " + head.next );
             }
             count++;
             head = head.next;
         }
 
-        removeZeroSumSublists(zero);
+        ListNode n1 = removeZeroSumSublists(zero);
+        ListShow(n1);
 
     }
 
@@ -59,7 +60,7 @@ public class MyLinkedList {
 
         while ( head != null ) {
             pSum += head.val;
-            System.out.println("> " + pSum);
+            System.out.println(head.val + " > " + pSum);
             if (hm.containsKey(pSum)) {
                 // Удаляем вложения
                 ListNode toRemove = hm.get(pSum).next;
@@ -80,6 +81,13 @@ public class MyLinkedList {
         }
         System.out.println( hm );
         return temp.next;
+    }
+
+    public static void ListShow(ListNode head) {
+        while (head != null) {
+            System.out.print(" > " + head.val );
+            head = head.next;
+        }
     }
 
 }
