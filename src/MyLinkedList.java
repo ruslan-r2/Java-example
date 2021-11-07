@@ -32,6 +32,17 @@ import java.util.Random;
 public class MyLinkedList {
     public static void main(String[] args) {
 
+        /*
+        ListNode n8 = new ListNode(-7);
+        ListNode n7 = new ListNode(4,n8);
+        ListNode n6 = new ListNode(3,n7);
+        ListNode n5 = new ListNode(2,n6);
+        ListNode n4 = new ListNode(-5,n5);
+        ListNode n3 = new ListNode(4,n4);
+        ListNode n2 = new ListNode(1, n3);
+        ListNode n1 = new ListNode(7, n2);
+         */
+
         ListNode head = new ListNode();
         ListNode zero = head;
         int count = 1;
@@ -46,8 +57,8 @@ public class MyLinkedList {
             head = head.next;
         }
 
-        ListNode n1 = removeZeroSumSublists(zero);
-        ListShow(n1);
+        ListNode node = removeZeroSumSublists(zero);
+        ListShow(node);
 
     }
 
