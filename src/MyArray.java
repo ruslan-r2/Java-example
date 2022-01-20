@@ -83,6 +83,7 @@ public class MyArray {
     }
 
     // Ещё одно решение при помощи стрима.
+    // Это самое эффективное решение.
     public static int[] array1(int[] arr, int n) {
         Map<Integer, Integer> mapInts = new HashMap<>();
         return Arrays.stream(arr)
